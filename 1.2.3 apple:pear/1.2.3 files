@@ -1,0 +1,101 @@
+#   a123_apple_1.py
+import turtle as trtl
+import random as rand
+#-----setup-----
+apple_image = "apple.gif" # Store the file name of your shape
+increment = 163
+listofletters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
+turtledumaletter = []
+turtleduma = []
+basex = -250 
+basey = 0
+wn = trtl.Screen()
+wn.setup(width=1.0, height=1.0)
+wn.addshape(apple_image) # Make the screen aware of the new file
+wn.bgpic("background.gif")
+limit = 9
+counter = 0
+#-----functions-----
+#creates all the different apples with their letters procedurally, and does so without repeating letters and keeps track of them in lists
+for something in range(5):
+  turtle = trtl.Turtle(visible=False)
+  turtle.speed(9.5)
+  turtle.pencolor("white")
+  turtle.shape(apple_image)
+  turtleduma.append(turtle)
+  random = str(listofletters[rand.randint(0,int(limit))])
+  turtledumaletter.append(random)
+  listofletters.pop(listofletters.index(random))
+  limit-=1
+  
+# given a turtle, set that turtle to be shaped by the image file
+
+# creates the apples and moves them to their correct position and associates with the correct letter
+def draw_apple(active_apple):
+  for some in range(5):
+    global counter
+    global basex
+    turtleduma[counter].hideturtle()
+    #active_apple.shape(apple_image)
+    wn.update()
+    turtleduma[counter].penup()
+    turtleduma[counter].goto(basex,basey)
+    turtleduma[counter].goto(turtleduma[counter].xcor()-18, turtleduma[counter].ycor()-40)
+    turtleduma[counter].pendown()
+    turtleduma[counter].write(str(turtledumaletter[counter]), font=("Arial", 55, "bold")) 
+    turtleduma[counter].penup()
+    turtleduma[counter].goto(turtleduma[counter].xcor()+18, turtleduma[counter].ycor()+40)
+    turtleduma[counter].pendown()
+    turtleduma[counter].showturtle()
+    counter+=1
+    basex+=100
+
+#causes 1st apple to fall
+def fall1():
+  turtleduma[0].penup()
+  turtleduma[0].goto(turtleduma[0].xcor(), turtleduma[0].ycor() - increment)
+  turtleduma[0].pendown()
+  turtleduma[0].clear()
+  turtleduma[0].hideturtle()
+wn.onkeypress(fall1, str(turtledumaletter[0]).lower())
+
+#causes third apple to fall
+def fall3():
+  turtleduma[2].penup()
+  turtleduma[2].goto(turtleduma[2].xcor(), turtleduma[2].ycor() - increment)
+  turtleduma[2].pendown()
+  turtleduma[2].clear()
+  turtleduma[2].hideturtle()
+wn.onkeypress(fall3, str(turtledumaletter[2]).lower())
+
+#causes second apple to fall
+def fall2():
+  turtleduma[1].penup()
+  turtleduma[1].goto(turtleduma[1].xcor(), turtleduma[1].ycor() - increment)
+  turtleduma[1].pendown()
+  turtleduma[1].clear()
+  turtleduma[1].hideturtle()
+wn.onkeypress(fall2, str(turtledumaletter[1]).lower())
+
+#causes fourth apple to fall
+def fall4():
+  turtleduma[3].penup()
+  turtleduma[3].goto(turtleduma[3].xcor(), turtleduma[3].ycor() - increment)
+  turtleduma[3].pendown()
+  turtleduma[3].clear()
+  turtleduma[3].hideturtle()
+wn.onkeypress(fall4, str(turtledumaletter[3]).lower())
+
+#causes fifth apple to fall
+def fall5():
+  turtleduma[4].penup()
+  turtleduma[4].goto(turtleduma[4].xcor(), turtleduma[4].ycor() - increment)
+  turtleduma[4].pendown()
+  turtleduma[4].clear()
+  turtleduma[4].hideturtle()
+wn.onkeypress(fall5, str(turtledumaletter[4]).lower())
+
+#-----function calls-----
+draw_apple(turtleduma[counter])
+wn.listen()
+wn.mainloop()

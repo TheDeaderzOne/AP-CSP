@@ -1,0 +1,5 @@
+Wallice,8
+Wallice Zwei,7
+Player1,7
+w,6
+Player2,6
